@@ -11,6 +11,7 @@
     tools:context="edu.gatech.m4.LoginActivity">
 
     <!-- Login progress -->
+
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -72,6 +73,13 @@
                 android:elevation="0dp"
                 android:text="@string/action_sign_in"
                 android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/errorText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
 
         </LinearLayout>
     </ScrollView>
