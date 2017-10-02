@@ -1,5 +1,6 @@
 package edu.gatech.m4;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,7 +20,7 @@ public class Registration extends AppCompatActivity {
     //Buttons
     private Button cancel;
     private Button register;
-    public HashMap<String,String> user_data;
+    public static HashMap<String,String> user_data;
     private EditText error;
 
 
@@ -45,6 +46,8 @@ public class Registration extends AppCompatActivity {
                 } else {
                     //add user to hashmap
                     user_data.put(email.getText().toString(), password.getText().toString());
+                    Intent intent = new Intent(Registration.this, StartActivity.class );
+                    startActivity(intent);
                 }
             }
         });
@@ -55,7 +58,7 @@ public class Registration extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    public HashMap<String, String> getUser_data() {
+    public static HashMap<String, String> getUser_data() {
         return user_data;
     }
 

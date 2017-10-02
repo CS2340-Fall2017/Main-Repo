@@ -229,9 +229,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private void validate(String userName, String password) {
-        if ((userName.equals("user")) && (password.equals("pass"))) {
-            Intent intent = new Intent(LoginActivity.this, StartActivity.class );
-            startActivity(intent);
+        if (Registration.getUser_data().containsKey(userName)) {
+            if (password.equals(Registration.getUser_data().get(userName))) {
+                Intent intent = new Intent(LoginActivity.this, StartActivity.class );
+                startActivity(intent);
+            } else {
+                errorView.setText("Incorrect Username or Password");
+            }
         } else {
             errorView.setText("Incorrect Username or Password");
         }
