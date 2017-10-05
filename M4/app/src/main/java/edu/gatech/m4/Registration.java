@@ -43,19 +43,19 @@ public class Registration extends AppCompatActivity {
         Admin = (RadioButton) findViewById(R.id.radio_admin);
         User = (RadioButton) findViewById(R.id.radio_user);
         error = (EditText) findViewById(R.id.error_message);
-        //Create hashmap
+        //Create hashmap of user data
         user_data = new HashMap<String, String>();
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //checks to see if a valid email address has been used to register
-                if (name.getText().toString().isEmpty()) {
+                if (name.getText().toString().isEmpty()) { //throws error if name not entered
                     error.setText("'Name' field cannot be empty");
-                } else if (!email.getText().toString().contains("@")) {
+                } else if (!email.getText().toString().contains("@")) { //throws error if an invalid email address type is entered
                     error.setText("Not a valid email address");
                 } else if (user_data.containsKey(email.getText().toString())) { //make sure user not already in hashmap
                     error.setText("You're already registered fool!");
-                } else if (password.getText().toString().isEmpty()) {
+                } else if (password.getText().toString().isEmpty()) { //makes sure password is entered
                     error.setText("'Password' field cannot be empty");
                 } else {
                     //add user to hashmap
@@ -67,7 +67,7 @@ public class Registration extends AppCompatActivity {
         });
         Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view) { //returns to welcome screen
                 Intent intent = new Intent(Registration.this, WelcomeActivity.class );
                 startActivity(intent);
             }
@@ -95,6 +95,14 @@ public class Registration extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Retrieves the a map of all the user login credentials.
+     *
+     *
+     *
+     * @return a map of all the user login credentials.
+     */
     public static HashMap<String, String> getUser_data() {
         return user_data;
     }

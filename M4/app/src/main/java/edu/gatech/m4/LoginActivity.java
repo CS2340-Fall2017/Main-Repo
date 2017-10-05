@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class );
-                startActivity(intent);
+                startActivity(intent); //go back to welcome page
             }
         });
     }
@@ -228,16 +228,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         return password.length() > 4;
     }
 
+    /**
+     * Validates a entered user credentials and does appropriate actions based on credentials entered.
+     *
+     *
+     * @param userName an inputed user name from the Login activity
+     * @param password an inputd password from the Login Activity
+     */
     private void validate(String userName, String password) {
-        if (Registration.getUser_data().containsKey(userName)) {
+        if (Registration.getUser_data().containsKey(userName)) { //
             if (password.equals(Registration.getUser_data().get(userName))) {
                 Intent intent = new Intent(LoginActivity.this, StartActivity.class );
                 startActivity(intent);
             } else {
-                errorView.setText("Incorrect Username or Password");
+                errorView.setText("Incorrect Username or Password"); //incorrect password entered
             }
         } else {
-            errorView.setText("Incorrect Username or Password");
+            errorView.setText("Incorrect Username or Password");//invalid username was entered
         }
     }
 
