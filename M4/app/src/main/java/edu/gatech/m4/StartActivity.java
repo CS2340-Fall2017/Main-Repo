@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import android.app.Activity;
@@ -39,12 +40,23 @@ public class StartActivity extends AppCompatActivity {
         InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
         CSVFile csvFile = new CSVFile(inputStream);
 
-        HashMap<String, String[]> scoreList = csvFile.read();
+        final HashMap<String, String[]> scoreList = csvFile.read();
         ArrayList<String> uniqueKeys = new ArrayList<String>(scoreList.keySet());
         String[] data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
         //String[] info = scoreList.toArray(new String[scoreList.size()]);
         listView.setAdapter(new ArrayAdapter<String>(StartActivity.this,
                 android.R.layout.simple_list_item_1,data));
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String uniqueID = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(StartActivity.this, DetailedRatDataDisplayActivity.class);
+                //pass the hashmap to detailedRatDataActivity
+                intent.putExtra("String Array", scoreList.get(uniqueID));
+                startActivity(intent);
+            }
+        });
 
     }
     public static HashMap<String, String[]> getData() {

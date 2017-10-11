@@ -15,4 +15,5 @@
     </string>
     <string name="title_activity_welcome_screen">WelcomeScreen</string>
     <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_detailed_rat_data_display">DetailedRatDataDisplayActivity</string>
 </resources>

@@ -28,7 +28,7 @@ public class CSVFile {
             String csvLine;
             while ((csvLine = reader.readLine()) != null) {
                 String[] row = csvLine.split(",");
-                data.put(row[0], Arrays.copyOfRange(row, 1, row.length));
+                data.put(row[0], Arrays.copyOfRange(row, 0, row.length));
                 resultList.add(row);
             }
         }

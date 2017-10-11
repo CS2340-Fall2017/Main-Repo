@@ -29,7 +29,11 @@
             android:name=".Registration"
             android:label="@string/title_activity_registration"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".DisplayRatDataActivity"></activity>
+        <activity android:name=".DisplayRatDataActivity" />
+        <activity
+            android:name=".DetailedRatDataDisplayActivity"
+            android:label="@string/title_activity_detailed_rat_data_display"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>
