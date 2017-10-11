@@ -16,7 +16,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name=".LoginActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,8 @@
         <activity
             android:name=".Registration"
             android:label="@string/title_activity_registration"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".DisplayRatDataActivity"></activity>
     </application>
 
 </manifest>

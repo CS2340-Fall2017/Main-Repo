@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "807125840193",
+    "firebase_url": "https://m4firebaseproject-ff46f.firebaseio.com",
+    "project_id": "m4firebaseproject-ff46f",
+    "storage_bucket": "m4firebaseproject-ff46f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807125840193:android:1aeda08e48513724",
+        "android_client_info": {
+          "package_name": "edu.gatech.m4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807125840193-v722q6qgtbaco35j1s76kvnmdto8d0jt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.gatech.m4",
+            "certificate_hash": "b6fc6312dd9636a6a58f8aa6bdca7e6339f12d5a"
+          }
+        },
+        {
+          "client_id": "807125840193-k48t89lgjlh7p3p176shtt1iua1fh42i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5QzeEme7iG33kgl-GRkDP-sAlRlJ8yVs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807125840193-k48t89lgjlh7p3p176shtt1iua1fh42i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
