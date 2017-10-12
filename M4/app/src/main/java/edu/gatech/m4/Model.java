@@ -11,9 +11,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
 
 public class Model {
 //    InputStream inputStream = getResources().openRawResource(R.raw.stats);
 //    CSVFile csvFile = new CSVFile(inputStream);
 //    List scoreList = csvFile.read();
+
+
+    private HashMap<String, String[]> RatData = StartActivity.getData();
+
 }
