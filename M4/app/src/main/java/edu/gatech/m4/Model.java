@@ -19,6 +19,6 @@ public class Model {
 //    List scoreList = csvFile.read();
 
 
-    private HashMap<String, String[]> RatData = StartActivity.getData();
+    private HashMap<String, String[]> RatData = new StartActivity().getData();
 
 }

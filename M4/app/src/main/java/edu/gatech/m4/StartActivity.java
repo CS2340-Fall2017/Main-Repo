@@ -14,36 +14,65 @@ import android.widget.ListView;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import android.support.annotation.NonNull;
 
 import android.widget.ArrayAdapter;
 
 public class StartActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener authListener;
     private Button LogOut;
     private ListView listView;
-    static HashMap<String, String[]> scoreList;
+    HashMap<String, String[]> scoreList;
+    String[] data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         listView = (ListView) findViewById(R.id.listView);
 
+        mAuth = FirebaseAuth.getInstance();
+        //get current user
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // user auth state is changed - user is null
+                    // launch login activity
+                    startActivity(new Intent(StartActivity.this, WelcomeActivity.class));
+                    finish();
+                }
+            }
+        };
+
+
+        if (savedInstanceState == null) {
+            InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
+            CSVFile csvFile = new CSVFile(inputStream);
+
+            scoreList = csvFile.read();
+            ArrayList<String> uniqueKeys = new ArrayList<String>(scoreList.keySet());
+            data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
+        }
         LogOut = (Button)findViewById(R.id.logout_button);
         LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StartActivity.this, WelcomeActivity.class );
-                startActivity(intent);
+                mAuth.signOut();
             }
         });
-        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
-        CSVFile csvFile = new CSVFile(inputStream);
-
-        final HashMap<String, String[]> scoreList = csvFile.read();
-        ArrayList<String> uniqueKeys = new ArrayList<String>(scoreList.keySet());
-        String[] data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
-        //String[] info = scoreList.toArray(new String[scoreList.size()]);
+//        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
+//        CSVFile csvFile = new CSVFile(inputStream);
+//
+//        final HashMap<String, String[]> scoreList = csvFile.read();
+//        ArrayList<String> uniqueKeys = new ArrayList<String>(scoreList.keySet());
+//        String[] data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
         listView.setAdapter(new ArrayAdapter<String>(StartActivity.this,
                 android.R.layout.simple_list_item_1,data));
 
@@ -59,8 +88,21 @@ public class StartActivity extends AppCompatActivity {
         });
 
     }
-    public static HashMap<String, String[]> getData() {
+    public HashMap<String, String[]> getData() {
         return scoreList;
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(authListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (authListener != null) {
+            mAuth.removeAuthStateListener(authListener);
+        }
     }
 
 }

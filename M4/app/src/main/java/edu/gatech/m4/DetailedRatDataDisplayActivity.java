@@ -14,7 +14,7 @@ import android.widget.Button;
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class DetailedRatDataDisplayActivity extends AppCompatActivity {
+public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
 
     private Button backButton;
 
@@ -53,8 +53,9 @@ public class DetailedRatDataDisplayActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DetailedRatDataDisplayActivity.this, StartActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(DetailedRatDataDisplayActivity.this, StartActivity.class);
+//                startActivity(intent);
+                finish();
             }
         });    }
 }
