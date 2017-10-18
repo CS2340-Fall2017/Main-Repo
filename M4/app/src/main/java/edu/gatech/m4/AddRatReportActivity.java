@@ -30,6 +30,25 @@ public class AddRatReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__rat__report_);
 
+        uniqueID = (EditText)findViewById(R.id.add_report_uniqueID);
+        createdDate = (EditText)findViewById(R.id.add_report_date_created);
+        locationType = (EditText)findViewById(R.id.add_report_location_type);
+        incidentZip = (EditText)findViewById(R.id.add_report_incident_zip);
+        incidentAddress = (EditText)findViewById(R.id.add_report_incident_address);
+        city = (EditText)findViewById(R.id.add_report_city);
+        borough = (EditText)findViewById(R.id.add_report_borough);
+        lattitude = (EditText)findViewById(R.id.add_report_lattitude);
+        longitude = (EditText)findViewById(R.id.add_report_longitude);
+
+        uniqueID.setHint("Unique ID");
+        createdDate.setHint("Date Created");
+        locationType.setHint("Location Type");
+        incidentZip.setHint("Incident Zip");
+        incidentAddress.setHint("Incident Address");
+        city.setHint("City");
+        borough.setHint("Borough");
+        lattitude.setHint("Lattitude");
+        longitude.setHint("Longitude");
 
         //for cancel button, return to previous screen
         cancelButton = (Button) findViewById(R.id.add_report_cancel_button);
@@ -47,15 +66,6 @@ public class AddRatReportActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                uniqueID = (EditText)findViewById(R.id.add_report_uniqueID);
-                createdDate = (EditText)findViewById(R.id.add_report_date_created);
-                locationType = (EditText)findViewById(R.id.add_report_location_type);
-                incidentZip = (EditText)findViewById(R.id.add_report_incident_zip);
-                incidentAddress = (EditText)findViewById(R.id.add_report_incident_address);
-                city = (EditText)findViewById(R.id.add_report_city);
-                borough = (EditText)findViewById(R.id.add_report_borough);
-                lattitude = (EditText)findViewById(R.id.add_report_lattitude);
-                longitude = (EditText)findViewById(R.id.add_report_longitude);
 
 
 
