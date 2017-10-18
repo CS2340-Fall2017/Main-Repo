@@ -27,8 +27,8 @@
         </activity>
         <activity
             android:name=".StartActivity"
-            android:launchMode="singleTask"
-            android:label="Welcome" />
+            android:label="Welcome"
+            android:launchMode="singleTask" />
         <activity
             android:name=".Registration"
             android:label="@string/title_activity_registration"
@@ -37,7 +37,8 @@
         <activity
             android:name=".DetailedRatDataDisplayActivity"
             android:label="Detailed Rat Data"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".AddRatReportActivity"></activity>
     </application>
 
 </manifest>

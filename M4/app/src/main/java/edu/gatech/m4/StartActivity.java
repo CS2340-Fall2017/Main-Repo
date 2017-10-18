@@ -25,6 +25,7 @@ public class StartActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authListener;
     private Button LogOut;
+    private Button addReport;
     private ListView listView;
     HashMap<String, String[]> scoreList;
     String[] data;
@@ -57,9 +58,18 @@ public class StartActivity extends AppCompatActivity {
             CSVFile csvFile = new CSVFile(inputStream);
 
             scoreList = csvFile.read();
+            try {
+                String[] newly_added_data = (String[]) getIntent().getSerializableExtra("String Array");
+                scoreList.put(newly_added_data[0], newly_added_data);
+            } catch (Exception e) {
+                //shouldn't be executed, if it is, just print something useless
+                System.out.println("something useless");
+            }
             ArrayList<String> uniqueKeys = new ArrayList<String>(scoreList.keySet());
             data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
         }
+
+        //log out
         LogOut = (Button)findViewById(R.id.logout_button);
         LogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,14 +77,16 @@ public class StartActivity extends AppCompatActivity {
                 mAuth.signOut();
             }
         });
-//        InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
-//        CSVFile csvFile = new CSVFile(inputStream);
-//
-//        final HashMap<String, String[]> scoreList = csvFile.read();
-//        ArrayList<String> uniqueKeys = new ArrayList<String>(scoreList.keySet());
-//        String[] data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
-        listView.setAdapter(new ArrayAdapter<String>(StartActivity.this,
-                android.R.layout.simple_list_item_1,data));
+        //add report
+        addReport = (Button)findViewById(R.id.add_report_button);
+        addReport.setOnClickListener(new View.OnClickListener() {
+                                         @Override
+                                         public void onClick(View v) {
+                                             startActivity(new Intent(StartActivity.this, AddRatReportActivity.class));
+                                         }
+                                     });
+                listView.setAdapter(new ArrayAdapter<String>(StartActivity.this,
+                        android.R.layout.simple_list_item_1, data));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -102,9 +102,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-
-
-
     /**
      * Validates a entered user credentials and does appropriate actions based on credentials entered.
      *
@@ -142,21 +139,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
-//        if (Registration.getUser_data().containsKey(userName)) { //
-//            if (password.equals(Registration.getUser_data().get(userName))) {
-//                Intent intent = new Intent(LoginActivity.this, StartActivity.class );
-//                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-//                startActivity(intent);
-//            } else {
-//                errorView.setText("Incorrect Username or Password"); //incorrect password entered
-//            }
-//        } else {
-//            errorView.setText("Incorrect Username or Password");//invalid username was entered
-//        }
-
-
 }
 
 
