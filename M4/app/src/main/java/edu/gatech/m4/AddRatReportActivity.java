@@ -73,11 +73,9 @@ public class AddRatReportActivity extends AppCompatActivity {
                 String[] data = new String[]{uniqueID.getText().toString(),createdDate.getText().toString(),locationType.getText().toString(),incidentZip.getText().toString(),incidentAddress.getText().toString(),
                 city.getText().toString(),borough.getText().toString(),lattitude.getText().toString(), longitude.getText().toString()};
 
-                //TODO
-                /**        PICK A STRATEGY FOR ADDING THE NEW REPORT:
-                 *          1) WRITE NEW ROW TO CSV FILE WITH NEW REPORT
-                 *          2) ADD NEW INSTANCE TO FIREBASE
-                 */
+                Model.getInstance().addReport(data[0], data);
+                startActivity(new Intent(AddRatReportActivity.this, StartActivity.class));
+//                finish();
 
 
 

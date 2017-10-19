@@ -18,7 +18,20 @@ public class Model {
 //    CSVFile csvFile = new CSVFile(inputStream);
 //    List scoreList = csvFile.read();
 
+    private static Model INSTANCE = new Model();
+    public static Model getInstance() {
+        return INSTANCE;
+    }
+    private HashMap<String, String[]> ratData = new HashMap<String, String[]>();
+    public void readCSV(CSVFile file) {
+        ratData = file.read();
+    }
+    public HashMap<String, String[]> getRatData() {
+        return ratData;
+    }
 
-    private HashMap<String, String[]> RatData = new StartActivity().getData();
+    public void addReport(String key, String[] reportData) {
+        ratData.put(key, reportData);
+    }
 
 }

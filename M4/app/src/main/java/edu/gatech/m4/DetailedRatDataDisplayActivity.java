@@ -34,15 +34,28 @@ public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
         TextView uniqueIDDisplay = (TextView) findViewById(R.id.detailed_textView);
         //display textData
         String specificData = "";
-        specificData += "Unique Key: " + data[0] + "\n";
-        specificData += "Created Date: " + data[1] + "\n";
-        specificData += "Location Type: " +  data[7] + "\n";
-        specificData += "Incident ZIP: " + data[8] + "\n";
-        specificData += "Incident Address: " + data[9] + "\n";
-        specificData += "City: " + data[16] + "\n";
-        specificData += "Borough: " + data[23] + "\n";
-        specificData += "Latitude: " + data[49] + "\n";
-        specificData += "Longitude: " + data[50];
+        if (data.length <= 9) {
+            specificData += "Unique Key: " + data[0] + "\n";
+            specificData += "Created Date: " + data[1] + "\n";
+            specificData += "Location Type: " +  data[2] + "\n";
+            specificData += "Incident ZIP: " + data[3] + "\n";
+            specificData += "Incident Address: " + data[4] + "\n";
+            specificData += "City: " + data[5] + "\n";
+            specificData += "Borough: " + data[6] + "\n";
+            specificData += "Latitude: " + data[7] + "\n";
+            specificData += "Longitude: " + data[8];
+        } else {
+            specificData += "Unique Key: " + data[0] + "\n";
+            specificData += "Created Date: " + data[1] + "\n";
+            specificData += "Location Type: " +  data[7] + "\n";
+            specificData += "Incident ZIP: " + data[8] + "\n";
+            specificData += "Incident Address: " + data[9] + "\n";
+            specificData += "City: " + data[16] + "\n";
+            specificData += "Borough: " + data[23] + "\n";
+            specificData += "Latitude: " + data[49] + "\n";
+            specificData += "Longitude: " + data[50];
+        }
+
 
 
         uniqueIDDisplay.setText(specificData);

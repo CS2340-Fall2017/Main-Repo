@@ -3,6 +3,8 @@ package edu.gatech.m4;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.app.Activity;
 import android.os.Parcelable;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ListView;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -27,13 +30,16 @@ public class StartActivity extends AppCompatActivity {
     private Button LogOut;
     private Button addReport;
     private ListView listView;
+    private EditText inputSearch;
     HashMap<String, String[]> scoreList;
     String[] data;
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         listView = (ListView) findViewById(R.id.listView);
+        inputSearch = (EditText) findViewById(R.id.inputSearch);
 
         mAuth = FirebaseAuth.getInstance();
         //get current user
@@ -56,8 +62,8 @@ public class StartActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             InputStream inputStream = getResources().openRawResource(R.raw.rat_sightings);
             CSVFile csvFile = new CSVFile(inputStream);
-
-            scoreList = csvFile.read();
+            Model.getInstance().readCSV(csvFile);
+            scoreList = Model.getInstance().getRatData();
             try {
                 String[] newly_added_data = (String[]) getIntent().getSerializableExtra("String Array");
                 scoreList.put(newly_added_data[0], newly_added_data);
@@ -83,10 +89,12 @@ public class StartActivity extends AppCompatActivity {
                                          @Override
                                          public void onClick(View v) {
                                              startActivity(new Intent(StartActivity.this, AddRatReportActivity.class));
+                                             //finish();
                                          }
                                      });
-                listView.setAdapter(new ArrayAdapter<String>(StartActivity.this,
-                        android.R.layout.simple_list_item_1, data));
+        adapter = new ArrayAdapter<String>(StartActivity.this,
+                android.R.layout.simple_list_item_1, data);
+                listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,8 +102,25 @@ public class StartActivity extends AppCompatActivity {
                 String uniqueID = (String) parent.getItemAtPosition(position);
                 Intent intent = new Intent(StartActivity.this, DetailedRatDataDisplayActivity.class);
                 //pass the hashmap to detailedRatDataActivity
-                intent.putExtra("String Array", scoreList.get(uniqueID));
+                intent.putExtra("String Array", Model.getInstance().getRatData().get(uniqueID));
                 startActivity(intent);
+            }
+        });
+
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //todo
+            }
+
+            @Override
+            public void onTextChanged(CharSequence cs, int i, int i1, int i2) {
+                StartActivity.this.adapter.getFilter().filter(cs);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                //todo
             }
         });
 
@@ -107,6 +132,10 @@ public class StartActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(authListener);
+        ArrayList<String> uniqueKeys1 = new ArrayList<String>(Model.getInstance().getRatData().keySet());
+        adapter = new ArrayAdapter<String>(StartActivity.this,
+                android.R.layout.simple_list_item_1, uniqueKeys1.toArray(new String[uniqueKeys1.size()]));
+        listView.setAdapter(adapter);
     }
 
     @Override

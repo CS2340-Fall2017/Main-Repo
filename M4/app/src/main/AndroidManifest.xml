@@ -28,7 +28,8 @@
         <activity
             android:name=".StartActivity"
             android:label="Welcome"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".Registration"
             android:label="@string/title_activity_registration"

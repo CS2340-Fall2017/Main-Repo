@@ -34,14 +34,20 @@
         app:layout_constraintVertical_bias="0.0"
         android:layout_marginStart="21dp"
         android:layout_marginEnd="8dp" />
+    <EditText android:id="@+id/inputSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/add_report_button"
+        android:hint="Search ID"
+        android:inputType="textVisiblePassword"/>
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="wrap_content"
-        android:layout_height="490dp"
-        android:layout_marginBottom="-22dp"
+        android:layout_height="470dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
