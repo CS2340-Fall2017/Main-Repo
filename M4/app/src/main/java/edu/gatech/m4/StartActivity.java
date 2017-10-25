@@ -90,7 +90,7 @@ public class StartActivity extends AppCompatActivity {
             for(int i = 0; i < data.length; i++ ) {
                 String[] arr = scoreList.get(data[i]);
                 if (arr.length >=49) { //some rows have fewer columns not displaying long and lat
-                    if(dbHelper.insertReport(arr[0],arr[1], arr[7], arr[8], arr[9], arr[16], arr[23], arr[49], arr[50])) {
+                    if(dbHelper.insertReport(arr[0],arr[1], arr[7], arr[50], arr[49], arr[8], arr[9], arr[16], arr[23])) {
                         Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
                     }
                     else{
