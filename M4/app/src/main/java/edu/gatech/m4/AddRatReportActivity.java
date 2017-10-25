@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import java.io.PrintWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,11 +26,14 @@ public class AddRatReportActivity extends AppCompatActivity {
     private EditText borough;
     private EditText lattitude;
     private EditText longitude;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__rat__report_);
+
+        dbHelper = new DBHelper(this);
 
         uniqueID = (EditText)findViewById(R.id.add_report_uniqueID);
         createdDate = (EditText)findViewById(R.id.add_report_date_created);
@@ -69,11 +74,21 @@ public class AddRatReportActivity extends AppCompatActivity {
 
 
 
-                //aggregate all of the fields into a string array
-                String[] data = new String[]{uniqueID.getText().toString(),createdDate.getText().toString(),locationType.getText().toString(),incidentZip.getText().toString(),incidentAddress.getText().toString(),
-                city.getText().toString(),borough.getText().toString(),lattitude.getText().toString(), longitude.getText().toString()};
+                if(dbHelper.insertReport(uniqueID.getText().toString(),createdDate.getText().toString(),locationType.getText().toString(), longitude.getText().toString(),lattitude.getText().toString(), incidentZip.getText().toString(),incidentAddress.getText().toString(),
+                        city.getText().toString(),borough.getText().toString())) { // 49 and 50
+                        Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Could not Insert report", Toast.LENGTH_SHORT).show();
+                    }
 
-                Model.getInstance().addReport(data[0], data);
+
+
+                //aggregate all of the fields into a string array
+//                String[] data = new String[]{uniqueID.getText().toString(),createdDate.getText().toString(),locationType.getText().toString(),incidentZip.getText().toString(),incidentAddress.getText().toString(),
+//                city.getText().toString(),borough.getText().toString(),lattitude.getText().toString(), longitude.getText().toString()};
+//
+//                Model.getInstance().addReport(data[0], data);
                 startActivity(new Intent(AddRatReportActivity.this, StartActivity.class));
 //                finish();
 
