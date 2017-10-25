@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "SQLiteRatReport1.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     public static final String REPORT_TABLE_NAME = "report";
     public static final String REPORT_COLUMN_ID = "_id";
     public static final String REPORT_COLUMN_NAME = "name";
@@ -73,6 +73,14 @@ public class DBHelper extends SQLiteOpenHelper {
                 REPORT_COLUMN_ID + "=?", new String[] { Integer.toString(id) } );
         return res;
     }
+    public Cursor getReport(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = null;
+        res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME + " WHERE " +
+                REPORT_COLUMN_NAME + "=?", new String[] { id } );
+        return res;
+    }
+
     public Cursor getAllReports() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = null;

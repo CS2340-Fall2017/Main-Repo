@@ -87,16 +87,16 @@ public class StartActivity extends AppCompatActivity {
 
             //adds inital csv data
 
-//            for(int i = 0; i < data.length; i++ ) {
-//                String[] arr = scoreList.get(data[i]);
-//                if (arr.length <=9) {
-//                    if(dbHelper.insertReport(arr[0],arr[1], arr[2], arr[3], arr[4], arr[5], arr[6], arr[7], arr[8])) {
-//                        Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else{
-//                        Toast.makeText(getApplicationContext(), "Could not Insert report", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
+            for(int i = 0; i < data.length; i++ ) {
+                String[] arr = scoreList.get(data[i]);
+                if (arr.length >=49) { //some rows have fewer columns not displaying long and lat
+                    if(dbHelper.insertReport(arr[0],arr[1], arr[7], arr[8], arr[9], arr[16], arr[23], arr[49], arr[50])) {
+                        Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Could not Insert report", Toast.LENGTH_SHORT).show();
+                    }
+                } //else {
 //                    if(dbHelper.insertReport(arr[0],arr[1], arr[7], arr[8], arr[9], arr[16], arr[23], arr[30], arr[31])) { // 49 and 50
 //                        Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
 //                    }
@@ -104,7 +104,7 @@ public class StartActivity extends AppCompatActivity {
 //                        Toast.makeText(getApplicationContext(), "Could not Insert report", Toast.LENGTH_SHORT).show();
 //                    }
 //                }
-//            }
+            }
 
         }
 
@@ -147,22 +147,22 @@ public class StartActivity extends AppCompatActivity {
         String[] arr = names.toArray(new String[names.size()]);
         adapter = new ArrayAdapter<String>(StartActivity.this,
                 android.R.layout.simple_list_item_1, arr);
-        listView.setAdapter(cursorAdapter);
+        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                String uniqueID = (String) parent.getItemAtPosition(position);
-//                Intent intent = new Intent(StartActivity.this, DetailedRatDataDisplayActivity.class);
-//                //pass the hashmap to detailedRatDataActivity
-//                intent.putExtra("String", uniqueID);
-//                startActivity(intent);
-
-                Cursor itemCursor = (Cursor) StartActivity.this.listView.getItemAtPosition(position);
-                int personID = itemCursor.getInt(itemCursor.getColumnIndex(DBHelper.REPORT_COLUMN_ID));
-                Intent intent = new Intent(getApplicationContext(), DetailedRatDataDisplayActivity.class);
-                intent.putExtra("Int", personID);
+                String uniqueID = (String) parent.getItemAtPosition(position);
+                Intent intent = new Intent(StartActivity.this, DetailedRatDataDisplayActivity.class);
+                //pass the hashmap to detailedRatDataActivity
+                intent.putExtra("String", uniqueID);
                 startActivity(intent);
+
+//                Cursor itemCursor = (Cursor) StartActivity.this.listView.getItemAtPosition(position);
+//                int personID = itemCursor.getInt(itemCursor.getColumnIndex(DBHelper.REPORT_COLUMN_ID));
+//                Intent intent = new Intent(getApplicationContext(), DetailedRatDataDisplayActivity.class);
+//                intent.putExtra("Int", personID);
+//                startActivity(intent);
 
             }
         });
@@ -175,7 +175,7 @@ public class StartActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence cs, int i, int i1, int i2) {
-                StartActivity.this.cursorAdapter.getFilter().filter(cs.toString());
+                StartActivity.this.adapter.getFilter().filter(cs.toString());
             }
 
             @Override
@@ -193,19 +193,31 @@ public class StartActivity extends AppCompatActivity {
         super.onStart();
         mAuth.addAuthStateListener(authListener);
 
-        Cursor cursor = dbHelper.getAllReports();
-        String [] columns = new String[] {
-                DBHelper.REPORT_COLUMN_ID,
-                DBHelper.REPORT_COLUMN_NAME
-        };
-        int [] widgets = new int[] {
-                R.id.reportID,
-                R.id.reportName
-        };
-        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.report_info1,
-                cursor, columns, widgets, 0);
+//        Cursor cursor = dbHelper.getAllReports();
+//        String [] columns = new String[] {
+//                DBHelper.REPORT_COLUMN_ID,
+//                DBHelper.REPORT_COLUMN_NAME
+//        };
+//        int [] widgets = new int[] {
+//                R.id.reportID,
+//                R.id.reportName
+//        };
+//        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.report_info1,
+//                cursor, columns, widgets, 0);
 
-        listView.setAdapter(cursorAdapter);
+//        listView.setAdapter(cursorAdapter);
+
+        Cursor cursor = dbHelper.getAllReports();
+        ArrayList<String> names = new ArrayList<>();
+        //cursor.moveToNext();
+        for(cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext() ) {
+            names.add(cursor.getString(1));
+        }
+
+        String[] arr = names.toArray(new String[names.size()]);
+        adapter = new ArrayAdapter<String>(StartActivity.this,
+                android.R.layout.simple_list_item_1, arr);
+        listView.setAdapter(adapter);
 
     }
 

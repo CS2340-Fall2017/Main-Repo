@@ -31,8 +31,8 @@ public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
 
 
 
-        Integer data = (Integer) getIntent().getSerializableExtra("Int");
-
+        //Integer data = (Integer) getIntent().getSerializableExtra("Int");
+        String data = (String) getIntent().getSerializableExtra("String");
         Cursor cursor = dbHelper.getReport(data);
         cursor.moveToFirst();
         String key = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_NAME));
