@@ -29,7 +29,7 @@
             android:name=".StartActivity"
             android:label="Welcome"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".Registration"
             android:label="@string/title_activity_registration"
@@ -39,7 +39,8 @@
             android:name=".DetailedRatDataDisplayActivity"
             android:label="Detailed Rat Data"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".AddRatReportActivity"></activity>
+        <activity android:name=".AddRatReportActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

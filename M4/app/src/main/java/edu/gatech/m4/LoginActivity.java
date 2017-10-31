@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         //Firebase Users
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, StartActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Toast.makeText(LoginActivity.this, "Authentication Failed", Toast.LENGTH_LONG).show();
                         } else {
-                            Intent intent = new Intent(LoginActivity.this, StartActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         }
