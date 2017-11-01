@@ -91,8 +91,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public Cursor getDateRange(String startDate, String endDate) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = null;
-        res = db.rawQuery( "SELECT " + REPORT_COLUMN_ID + " FROM " + REPORT_TABLE_NAME + " WHERE " +
-                            REPORT_COLUMN_DATE + " BETWEEN " + startDate + " AND " + endDate, null);
+//        res = db.rawQuery( "SELECT " + REPORT_COLUMN_ID + " FROM " + REPORT_TABLE_NAME + " WHERE " +
+//                            REPORT_COLUMN_DATE + " BETWEEN " + startDate + " AND " + endDate, null);
+        res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME, null );
         return res;
     }
 

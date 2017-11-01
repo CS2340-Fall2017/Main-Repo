@@ -3,6 +3,7 @@ package edu.gatech.m4;
 import android.database.Cursor;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -12,11 +13,19 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.UiSettings;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private UiSettings mUiSettings;
     private DBHelper dbHelper;
+    private double latitude;
+    private double longitude;
+    private String id;
+    private ArrayList<String> idList;
+    private ArrayList<Double> latitudeList;
+    private ArrayList<Double> longitudeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +37,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mapFragment.getMapAsync(this);
         dbHelper = new DBHelper(this);
+        idList = new ArrayList<String>();
+        latitudeList = new ArrayList<Double>();
+        longitudeList = new ArrayList<Double>();
 
-//        String[] dates = (String[]) getIntent().getSerializableExtra("String");
-//
-//        Cursor cursor = dbHelper.getDateRange(dates[0], dates[1]);
-//        cursor.moveToFirst();
-//        int key = cursor.getInt(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_ID));
+        String[] dates = (String[]) getIntent().getSerializableExtra("String");
+
+        Cursor cursor = dbHelper.getDateRange(dates[0], dates[1]);
+        cursor.moveToFirst();
+        for (int i=0; i<10; i++) {
+            if (cursor.moveToNext()) {
+                id = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_NAME));
+                idList.add(id);
+                latitude = Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_LATITUDE)));
+                latitudeList.add(latitude);
+                longitude = Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_LONGITUDE)));
+                longitudeList.add(longitude);
+            }
+        }
 
     }
 
@@ -53,8 +74,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mUiSettings = mMap.getUiSettings();
         mUiSettings.setZoomControlsEnabled(true);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        for (int a=0; a<10; a++) {
+            LatLng marker = new LatLng(latitudeList.get(a), longitudeList.get(a));
+            mMap.addMarker(new MarkerOptions().position(marker).title(idList.get(a)).snippet("."));
+        }
+        
     }
 }
