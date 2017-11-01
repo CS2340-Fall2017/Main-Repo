@@ -59,11 +59,12 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
+            android:value="AIzaSyCHUv_LHafWfz0c3EXBNXJvnIQPeB6HFJI" />
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".MapDatesActivity"></activity>
     </application>
 
 </manifest>
