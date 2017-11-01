@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(AddRatReportActivity.this, StartActivity.class));
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
             }
         });
 
