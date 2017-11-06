@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         graphButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(AddRatReportActivity.this, StartActivity.class));
+                startActivity(new Intent(MainActivity.this, GraphDatesActivity.class));
             }
         });
         mapButton = (Button) findViewById(R.id.mapButton);
