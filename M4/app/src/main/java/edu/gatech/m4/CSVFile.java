@@ -28,6 +28,30 @@ public class CSVFile {
             String csvLine;
             while ((csvLine = reader.readLine()) != null) {
                 String[] row = csvLine.split(",");
+                //edit the date column
+                String date = row[1];
+                if (date.equals("Created Date")) {
+
+                } else {
+                    String[] splitted = date.split("\\s+");
+                    date = splitted[0];
+                    String[] dateSplitted = date.split("/");
+
+                    if (dateSplitted[0].length() == 1) {
+                        dateSplitted[0] = "0" + dateSplitted[0];
+                    }
+
+                    if (dateSplitted[1].length() == 1) {
+                        dateSplitted[1] = "0" + dateSplitted[1];
+                    }
+
+                    if (dateSplitted[2].length() == 2) {
+                        dateSplitted[2] = "20" + dateSplitted[2];
+                    }
+
+                    String newDate = dateSplitted[2] + "-" + dateSplitted[0] + "-" + dateSplitted[1];
+                    row[1] = newDate;
+                }
                 data.put(row[0], Arrays.copyOfRange(row, 0, row.length));
                 resultList.add(row);
             }

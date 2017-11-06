@@ -3,6 +3,7 @@ package edu.gatech.m4;
 import android.database.Cursor;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,7 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         longitudeList = new ArrayList<Double>();
 
         String[] dates = (String[]) getIntent().getSerializableExtra("String");
-
+        Log.d("message", dates[0]);
         Cursor cursor = dbHelper.getDateRange(dates[0], dates[1]);
         cursor.moveToFirst();
         for (int i=0; i<10; i++) {

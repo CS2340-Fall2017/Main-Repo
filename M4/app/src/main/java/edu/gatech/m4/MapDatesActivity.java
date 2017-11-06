@@ -34,15 +34,17 @@ public class MapDatesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String sDay = Integer.toString(startDateVal.getDayOfMonth());
                 sDay = (sDay.length() < 2) ? "0" + sDay : sDay;
-                String sMonth = Integer.toString(startDateVal.getMonth());
-                String sYear  = Integer.toString(startDateVal.getYear()).substring(2,4);
-                String startDate = sMonth + "/" + sDay + "/" + sYear;
-
+                String sMonth = Integer.toString(startDateVal.getMonth() + 1); //gets month starting from zero
+                sMonth = (sMonth.length() < 2) ? "0" + sMonth : sMonth;
+                String sYear  = Integer.toString(startDateVal.getYear());
+                String startDate = sYear + "-" + sMonth + "-" + sDay;
+                Log.i("START DATE:", startDate);
                 String eDay = Integer.toString(endDateVal.getDayOfMonth());
                 eDay = (eDay.length() < 2) ? "0" + eDay : eDay;
-                String eMonth = Integer.toString(endDateVal.getMonth());
-                String eYear  = Integer.toString(endDateVal.getYear()).substring(2,4);
-                String endDate = eMonth + "/" + eDay + "/" + eYear;
+                String eMonth = Integer.toString(endDateVal.getMonth() + 1); //gets month starting from zero
+                eMonth = (eMonth.length() < 2) ? "0" + eMonth : eMonth;
+                String eYear  = Integer.toString(endDateVal.getYear());
+                String endDate = eYear + "-" + eMonth + "-" + eDay;
 
                 String[] dateStrings = { startDate, endDate };
                 Intent intent = new Intent(MapDatesActivity.this, MapsActivity.class);
