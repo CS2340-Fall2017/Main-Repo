@@ -24,9 +24,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private double latitude;
     private double longitude;
     private String id;
+    private String borough;
     private ArrayList<String> idList;
     private ArrayList<Double> latitudeList;
     private ArrayList<Double> longitudeList;
+    private ArrayList<String> boroughList;
+    private int numInstancesToShow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +45,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         idList = new ArrayList<String>();
         latitudeList = new ArrayList<Double>();
         longitudeList = new ArrayList<Double>();
+        boroughList = new ArrayList<String>();
 
         String[] dates = (String[]) getIntent().getSerializableExtra("String");
+        numInstancesToShow = Integer.parseInt(dates[2]);
         Log.d("message", dates[0]);
         Cursor cursor = dbHelper.getDateRange(dates[0], dates[1]);
         cursor.moveToFirst();
-        for (int i=0; i<10; i++) {
+        for (int i=0; i<numInstancesToShow; i++) {
             if (cursor.moveToNext()) {
                 id = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_NAME));
                 idList.add(id);
@@ -54,6 +60,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 latitudeList.add(latitude);
                 longitude = Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_LONGITUDE)));
                 longitudeList.add(longitude);
+                borough = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_BOROUGH));
+                boroughList.add(borough);
             }
         }
 
@@ -75,9 +83,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mUiSettings = mMap.getUiSettings();
         mUiSettings.setZoomControlsEnabled(true);
         // Add a marker in Sydney and move the camera
-        for (int a=0; a<10; a++) {
+        for (int a=0; a<numInstancesToShow; a++) {
             LatLng marker = new LatLng(latitudeList.get(a), longitudeList.get(a));
-            mMap.addMarker(new MarkerOptions().position(marker).title(idList.get(a)).snippet("."));
+            mMap.addMarker(new MarkerOptions().position(marker).title(idList.get(a)).snippet(boroughList.get(a)));
         }
         
     }

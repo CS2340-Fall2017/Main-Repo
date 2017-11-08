@@ -7,8 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
-
 
 
 public class GraphDatesActivity extends AppCompatActivity {
@@ -22,12 +20,12 @@ public class GraphDatesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map_dates);
+        setContentView(R.layout.activity_graph_dates);
 
-        startDateVal = (DatePicker)findViewById(R.id.startDate_Picker);
-        endDateVal = (DatePicker)findViewById(R.id.endDate_Picker);
+        startDateVal = (DatePicker)findViewById(R.id.startDate_Picker_Graph);
+        endDateVal = (DatePicker)findViewById(R.id.endDate_Picker_Graph);
 
-        loadMap = (Button) findViewById(R.id.loadMap);
+        loadMap = (Button) findViewById(R.id.loadGraph);
         //switch to activity with map
         loadMap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +44,10 @@ public class GraphDatesActivity extends AppCompatActivity {
                 String eYear  = Integer.toString(endDateVal.getYear());
                 String endDate = eYear + "-" + eMonth + "-" + eDay;
 
-//                String[] dateStrings = { startDate, endDate };
-//                Intent intent = new Intent(GraphDatesActivity.this, GraphActivity.class);
-//                intent.putExtra("String", dateStrings);
-//                startActivity(intent);
+                String[] dateStrings = { startDate, endDate };
+                Intent intent = new Intent(GraphDatesActivity.this, GraphActivity.class);
+                intent.putExtra("String", dateStrings);
+                startActivity(intent);
 
             }
         });
