@@ -10,17 +10,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button reportsButton;
-    private Button graphButton;
-    private Button mapButton;
-    private Button logoutButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        reportsButton = (Button) findViewById(R.id.reportsButton);
+        Button reportsButton = (Button) findViewById(R.id.reportsButton);
         reportsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        graphButton = (Button) findViewById(R.id.graphButton);
+        Button graphButton = (Button) findViewById(R.id.graphButton);
         //switch to activity with graph
         graphButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, GraphDatesActivity.class));
             }
         });
-        mapButton = (Button) findViewById(R.id.mapButton);
+        Button mapButton = (Button) findViewById(R.id.mapButton);
         //switch to activity with map
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        logoutButton = (Button) findViewById(R.id.logoutButton);
+        Button logoutButton = (Button) findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

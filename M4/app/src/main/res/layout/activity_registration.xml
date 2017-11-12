@@ -62,12 +62,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Admin"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="onClick"/>
                 <RadioButton android:id="@+id/radio_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="User"
-                    android:onClick="onRadioButtonClicked"/>
+                    android:onClick="onClick"/>
             </RadioGroup>
 
             <Button

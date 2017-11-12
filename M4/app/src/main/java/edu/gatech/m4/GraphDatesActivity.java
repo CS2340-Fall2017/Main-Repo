@@ -11,7 +11,6 @@ import android.widget.DatePicker;
 
 public class GraphDatesActivity extends AppCompatActivity {
 
-    private Button loadMap;
     private DatePicker startDateVal;
     private DatePicker endDateVal;
     private String startDate;
@@ -25,7 +24,7 @@ public class GraphDatesActivity extends AppCompatActivity {
         startDateVal = (DatePicker)findViewById(R.id.startDate_Picker_Graph);
         endDateVal = (DatePicker)findViewById(R.id.endDate_Picker_Graph);
 
-        loadMap = (Button) findViewById(R.id.loadGraph);
+        Button loadMap = (Button) findViewById(R.id.loadGraph);
         //switch to activity with map
         loadMap.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -96,7 +96,7 @@
     <DatePicker
         android:id="@+id/startDate_Picker"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="213dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -128,15 +128,6 @@
         app:layout_constraintStart_toEndOf="@+id/loadGraph"
         app:layout_constraintTop_toBottomOf="@+id/endDate_Picker_Graph"
         app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:text="Map"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_editor_absoluteY="6dp" />
 
 
 </android.support.constraint.ConstraintLayout>

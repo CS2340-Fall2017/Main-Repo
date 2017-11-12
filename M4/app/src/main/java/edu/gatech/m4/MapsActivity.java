@@ -4,9 +4,7 @@ import android.database.Cursor;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -18,13 +16,6 @@ import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-    private UiSettings mUiSettings;
-    private DBHelper dbHelper;
-    private double latitude;
-    private double longitude;
-    private String id;
-    private String borough;
     private ArrayList<String> idList;
     private ArrayList<Double> latitudeList;
     private ArrayList<Double> longitudeList;
@@ -41,11 +32,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
-        dbHelper = new DBHelper(this);
-        idList = new ArrayList<String>();
-        latitudeList = new ArrayList<Double>();
-        longitudeList = new ArrayList<Double>();
-        boroughList = new ArrayList<String>();
+        DBHelper dbHelper = new DBHelper(this);
+        idList = new ArrayList<>();
+        latitudeList = new ArrayList<>();
+        longitudeList = new ArrayList<>();
+        boroughList = new ArrayList<>();
 
         String[] dates = (String[]) getIntent().getSerializableExtra("String");
         numInstancesToShow = Integer.parseInt(dates[2]);
@@ -54,13 +45,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         cursor.moveToFirst();
         for (int i=0; i<numInstancesToShow; i++) {
             if (cursor.moveToNext()) {
-                id = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_NAME));
+                String id = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_NAME));
                 idList.add(id);
-                latitude = Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_LATITUDE)));
+                double latitude = Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_LATITUDE)));
                 latitudeList.add(latitude);
-                longitude = Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_LONGITUDE)));
+                double longitude = Double.parseDouble(cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_LONGITUDE)));
                 longitudeList.add(longitude);
-                borough = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_BOROUGH));
+                String borough = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_BOROUGH));
                 boroughList.add(borough);
             }
         }
@@ -79,8 +70,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
-        mUiSettings = mMap.getUiSettings();
+        GoogleMap mMap = googleMap;
+        UiSettings mUiSettings = mMap.getUiSettings();
         mUiSettings.setZoomControlsEnabled(true);
         // Add a marker in Sydney and move the camera
         for (int a=0; a<numInstancesToShow; a++) {

@@ -2,10 +2,7 @@ package edu.gatech.m4;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,23 +18,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 //import com.google.firebase.auth.;
 
-import com.google.firebase.auth.FirebaseUser;
-
 
 public class Registration extends AppCompatActivity {
-    //Edit Texts
-    private EditText name;
     private EditText email;
     private EditText password;
-    //Buttons
-    private Button Cancel;
-    private Button Register;
-    //Radio Buttons
-    private RadioButton Admin;
-    private RadioButton User;
     //Hash Map to store user registrations
-    public static HashMap<String,String> user_data;
-    private EditText error;
+    private static HashMap<String,String> user_data;
 
 
     private FirebaseAuth mAuth;
@@ -49,21 +35,21 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         //Map UI to variables
-        name = (EditText)findViewById(R.id.name_registration);
+        EditText name = (EditText) findViewById(R.id.name_registration);
         email = (EditText)findViewById(R.id.email_registration);
         password = (EditText)findViewById(R.id.password_registration);
-        Register = (Button) findViewById(R.id.registration_button);
-        Cancel = (Button) findViewById(R.id.cancel_registration_button);
-        Admin = (RadioButton) findViewById(R.id.radio_admin);
-        User = (RadioButton) findViewById(R.id.radio_user);
-        error = (EditText) findViewById(R.id.error_message);
+        Button register = (Button) findViewById(R.id.registration_button);
+        Button cancel = (Button) findViewById(R.id.cancel_registration_button);
+        RadioButton admin = (RadioButton) findViewById(R.id.radio_admin);
+        RadioButton user = (RadioButton) findViewById(R.id.radio_user);
+        EditText error = (EditText) findViewById(R.id.error_message);
         //Create hashmap of user data
-        user_data = new HashMap<String, String>();
+        user_data = new HashMap<>();
 
         //Firebase
         mAuth = FirebaseAuth.getInstance();
 
-        Register.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String emailInput = email.getText().toString().trim();
@@ -127,7 +113,7 @@ public class Registration extends AppCompatActivity {
 //                }
             }
         });
-        Cancel.setOnClickListener(new View.OnClickListener() {
+        cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) { //returns to welcome screen
                 Intent intent = new Intent(Registration.this, WelcomeActivity.class );
@@ -137,10 +123,10 @@ public class Registration extends AppCompatActivity {
         //super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_registration);
         //setup the registration form.
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
     }
-    public void onRadioButtonClicked(View view) {
+    public void onClick(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 

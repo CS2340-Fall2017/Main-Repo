@@ -2,35 +2,26 @@ package edu.gatech.m4;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
 public class GraphActivity extends AppCompatActivity {
-    private DBHelper dbHelper;
     private int numInstancesToShow;
-    private Button backButton;
-    private Map<String, Integer> graphHelper = new TreeMap<String, Integer>();
-    private List<BarEntry> entries = new ArrayList<>();
+    private final Map<String, Integer> graphHelper = new TreeMap<>();
+    private final List<BarEntry> entries = new ArrayList<>();
 
 
 
@@ -42,7 +33,7 @@ public class GraphActivity extends AppCompatActivity {
         setContentView(R.layout.activity_graph);
 
 
-        dbHelper = new DBHelper(this);
+        DBHelper dbHelper = new DBHelper(this);
 
         String[] dates = (String[]) getIntent().getSerializableExtra("String");
         Cursor cursor = dbHelper.getDateRange(dates[0], dates[1]);
@@ -92,7 +83,7 @@ public class GraphActivity extends AppCompatActivity {
         barChart.setFitBars(true); // make the x-axis fit exactly all bars
         barChart.invalidate(); // refresh
 
-        backButton = (Button)findViewById(R.id.graphBackButton);
+        Button backButton = (Button) findViewById(R.id.graphBackButton);
         //switch to activity with map
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

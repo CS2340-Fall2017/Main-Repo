@@ -1,9 +1,6 @@
 package edu.gatech.m4;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.*;
-
 
 /**
  * Created by Murphy on 11/12/17.

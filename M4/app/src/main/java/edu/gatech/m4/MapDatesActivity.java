@@ -13,7 +13,6 @@ import android.widget.EditText;
 
 public class MapDatesActivity extends AppCompatActivity {
 
-    private Button loadGraph;
     private DatePicker startDateVal;
     private DatePicker endDateVal;
     private String startDate;
@@ -30,7 +29,7 @@ public class MapDatesActivity extends AppCompatActivity {
         numInstances = (EditText)findViewById(R.id.numInstancesDateRange);
 
 
-        loadGraph = (Button) findViewById(R.id.loadGraph);
+        Button loadGraph = (Button) findViewById(R.id.loadGraph);
         //switch to activity with map
         loadGraph.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,13 +8,7 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.PrintWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-
 public class AddRatReportActivity extends AppCompatActivity {
-    private Button cancelButton;
-    private Button acceptButton;
 
     //vars for inputs
     private EditText uniqueID;
@@ -24,7 +18,7 @@ public class AddRatReportActivity extends AppCompatActivity {
     private EditText incidentAddress;
     private EditText city;
     private EditText borough;
-    private EditText lattitude;
+    private EditText latitude;
     private EditText longitude;
     private DBHelper dbHelper;
 
@@ -42,7 +36,7 @@ public class AddRatReportActivity extends AppCompatActivity {
         incidentAddress = (EditText)findViewById(R.id.add_report_incident_address);
         city = (EditText)findViewById(R.id.add_report_city);
         borough = (EditText)findViewById(R.id.add_report_borough);
-        lattitude = (EditText)findViewById(R.id.add_report_lattitude);
+        latitude = (EditText)findViewById(R.id.add_report_latitude);
         longitude = (EditText)findViewById(R.id.add_report_longitude);
 
         uniqueID.setHint("Unique ID");
@@ -52,11 +46,11 @@ public class AddRatReportActivity extends AppCompatActivity {
         incidentAddress.setHint("Incident Address");
         city.setHint("City");
         borough.setHint("Borough");
-        lattitude.setHint("Lattitude");
+        latitude.setHint("Latitude");
         longitude.setHint("Longitude");
 
         //for cancel button, return to previous screen
-        cancelButton = (Button) findViewById(R.id.add_report_cancel_button);
+        Button cancelButton = (Button) findViewById(R.id.add_report_cancel_button);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +60,7 @@ public class AddRatReportActivity extends AppCompatActivity {
 
 
         //action for accept button
-        acceptButton = (Button) findViewById(R.id.add_report_accept_button);
+        Button acceptButton = (Button) findViewById(R.id.add_report_accept_button);
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +68,7 @@ public class AddRatReportActivity extends AppCompatActivity {
 
 
 
-                if(dbHelper.insertReport(uniqueID.getText().toString(),createdDate.getText().toString(),locationType.getText().toString(), longitude.getText().toString(),lattitude.getText().toString(), incidentZip.getText().toString(),incidentAddress.getText().toString(),
+                if(dbHelper.insertReport(uniqueID.getText().toString(),createdDate.getText().toString(),locationType.getText().toString(), longitude.getText().toString(),latitude.getText().toString(), incidentZip.getText().toString(),incidentAddress.getText().toString(),
                         city.getText().toString(),borough.getText().toString())) { // 49 and 50
                         Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
                     }
@@ -86,7 +80,7 @@ public class AddRatReportActivity extends AppCompatActivity {
 
                 //aggregate all of the fields into a string array
 //                String[] data = new String[]{uniqueID.getText().toString(),createdDate.getText().toString(),locationType.getText().toString(),incidentZip.getText().toString(),incidentAddress.getText().toString(),
-//                city.getText().toString(),borough.getText().toString(),lattitude.getText().toString(), longitude.getText().toString()};
+//                city.getText().toString(),borough.getText().toString(),latitude.getText().toString(), longitude.getText().toString()};
 //
 //                Model.getInstance().addReport(data[0], data);
                 startActivity(new Intent(AddRatReportActivity.this, StartActivity.class));

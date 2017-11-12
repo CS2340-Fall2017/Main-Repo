@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/add_report_city" />
 
     <EditText
-        android:id="@+id/add_report_lattitude"
+        android:id="@+id/add_report_latitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -118,7 +118,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_report_lattitude"
+        app:layout_constraintTop_toBottomOf="@+id/add_report_latitude"
         app:layout_constraintVertical_bias="0.076" />
 
     <Button

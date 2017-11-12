@@ -10,10 +10,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Cesar Porcayo on 10/24/2017.
  */
 
-public class DBHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "SQLiteRatReport1.db";
+class DBHelper extends SQLiteOpenHelper {
+    private static final String DATABASE_NAME = "SQLiteRatReport1.db";
     private static final int DATABASE_VERSION = 13;
-    public static final String REPORT_TABLE_NAME = "report";
+    private static final String REPORT_TABLE_NAME = "report";
     public static final String REPORT_COLUMN_ID = "_id";
     public static final String REPORT_COLUMN_NAME = "name";
     public static final String REPORT_COLUMN_DATE = "date";
@@ -66,18 +66,19 @@ public class DBHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public Cursor getReport(int id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = null;
-        res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME + " WHERE " +
-                REPORT_COLUMN_ID + "=?", new String[] { Integer.toString(id) } );
-        return res;
-    }
+//    public Cursor getReport(int id) {
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor res = null;
+//        res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME + " WHERE " +
+//                REPORT_COLUMN_ID + "=?", new String[] { Integer.toString(id) } );
+//        return res;
+//    }
     public Cursor getReport(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor res = null;
         res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME + " WHERE " +
                 REPORT_COLUMN_NAME + "=?", new String[] { id } );
+        //res = db.rawQuery( "SELECT * FROM %s WHERE %s =?".format(REPORT_TABLE_NAME, REPORT_COLUMN_NAME), new String[] { id } );
         return res;
     }
 
