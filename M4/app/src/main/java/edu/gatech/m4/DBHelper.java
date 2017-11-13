@@ -75,7 +75,7 @@ class DBHelper extends SQLiteOpenHelper {
 //    }
     public Cursor getReport(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = null;
+        Cursor res;
         res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME + " WHERE " +
                 REPORT_COLUMN_NAME + "=?", new String[] { id } );
         //res = db.rawQuery( "SELECT * FROM %s WHERE %s =?".format(REPORT_TABLE_NAME, REPORT_COLUMN_NAME), new String[] { id } );
@@ -84,14 +84,14 @@ class DBHelper extends SQLiteOpenHelper {
 
     public Cursor getAllReports() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = null;
+        Cursor res;
         res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME, null );
         return res;
     }
 
     public Cursor getDateRange(String startDate, String endDate) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = null;
+        Cursor res;
         res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME + " WHERE " +
                             REPORT_COLUMN_DATE + " BETWEEN '" + startDate + "' AND '" + endDate + "'", null);
 //        res = db.rawQuery( "SELECT * FROM " + REPORT_TABLE_NAME, null );

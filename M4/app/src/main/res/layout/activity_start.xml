@@ -10,7 +10,7 @@
         android:id="@+id/logout_button"
         android:layout_width="120dp"
         android:layout_height="48dp"
-        android:text="Log Out"
+        android:text="@string/Logout"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -25,7 +25,7 @@
         android:layout_marginLeft="21dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="Add Report"
+        android:text="@string/AddReport"
         app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/logout_button"
@@ -38,7 +38,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/add_report_button"
-        android:hint="Search ID"
+        android:hint="@string/SearchID"/>
         android:inputType="textVisiblePassword"/>
 
     <ListView

@@ -14,8 +14,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome_screen);
 
-        Button login = (Button) findViewById(R.id.loginButton);
-        Button register = (Button) findViewById(R.id.registerButton);
+        Button login = findViewById(R.id.loginButton);
+        Button register = findViewById(R.id.registerButton);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

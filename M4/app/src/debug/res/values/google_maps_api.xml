@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!--
     TODO: Before you run your application, you need a Google Maps API key.
 
@@ -20,7 +20,7 @@
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.
     -->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false" tools:keep="@string/google_maps_key">
         AIzaSyA-YBd3af8RdufJGVcL_P6j4OB60Nwl5uI
     </string>
 </resources>

@@ -27,7 +27,6 @@ public class Registration extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
 
 
     @Override
@@ -35,14 +34,14 @@ public class Registration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         //Map UI to variables
-        EditText name = (EditText) findViewById(R.id.name_registration);
-        email = (EditText)findViewById(R.id.email_registration);
-        password = (EditText)findViewById(R.id.password_registration);
-        Button register = (Button) findViewById(R.id.registration_button);
-        Button cancel = (Button) findViewById(R.id.cancel_registration_button);
-        RadioButton admin = (RadioButton) findViewById(R.id.radio_admin);
-        RadioButton user = (RadioButton) findViewById(R.id.radio_user);
-        EditText error = (EditText) findViewById(R.id.error_message);
+        EditText name = findViewById(R.id.name_registration);
+        email = findViewById(R.id.email_registration);
+        password = findViewById(R.id.password_registration);
+        Button register = findViewById(R.id.registration_button);
+        Button cancel = findViewById(R.id.cancel_registration_button);
+        RadioButton admin = findViewById(R.id.radio_admin);
+        RadioButton user = findViewById(R.id.radio_user);
+        EditText error = findViewById(R.id.error_message);
         //Create hashmap of user data
         user_data = new HashMap<>();
 
@@ -143,16 +142,5 @@ public class Registration extends AppCompatActivity {
         }
     }
 
-
-    /**
-     * Retrieves the a map of all the user login credentials.
-     *
-     *
-     *
-     * @return a map of all the user login credentials.
-     */
-    public static HashMap<String, String> getUser_data() {
-        return user_data;
-    }
 
 }

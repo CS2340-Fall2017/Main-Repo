@@ -49,7 +49,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:text="End Date"
+        android:text="@string/EndDate"
         app:layout_constraintBottom_toTopOf="@+id/endDate_Picker_Graph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +62,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="36dp"
-        android:text="Start Date"
+        android:text="@string/StartDate"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +74,7 @@
         android:layout_marginBottom="12dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:text="Load"
+        android:text="@string/Load"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
@@ -90,7 +90,8 @@
         android:datePickerMode="spinner"
         app:layout_constraintBottom_toTopOf="@+id/loadGraph"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:targetApi="lollipop" />
 
     <DatePicker
         android:id="@+id/startDate_Picker_Graph"
@@ -106,7 +107,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/textView5"
@@ -114,9 +116,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Graph"
+        android:text="@string/Graph"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp" />
 
 
 </android.support.constraint.ConstraintLayout>

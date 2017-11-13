@@ -35,7 +35,7 @@ public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
         String longitude = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_LONGITUDE));
 
         //get id of textView
-        TextView uniqueIDDisplay = (TextView) findViewById(R.id.detailed_textView);
+        TextView uniqueIDDisplay = findViewById(R.id.detailed_textView);
         //display textData
         String specificData = "";
             specificData += "Unique Key: " + key + "\n";
@@ -55,7 +55,7 @@ public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
 
 
         // back button
-        Button backButton = (Button) findViewById(R.id.backButton);
+        Button backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -29,15 +29,15 @@ public class AddRatReportActivity extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
 
-        uniqueID = (EditText)findViewById(R.id.add_report_uniqueID);
-        createdDate = (EditText)findViewById(R.id.add_report_date_created);
-        locationType = (EditText)findViewById(R.id.add_report_location_type);
-        incidentZip = (EditText)findViewById(R.id.add_report_incident_zip);
-        incidentAddress = (EditText)findViewById(R.id.add_report_incident_address);
-        city = (EditText)findViewById(R.id.add_report_city);
-        borough = (EditText)findViewById(R.id.add_report_borough);
-        latitude = (EditText)findViewById(R.id.add_report_latitude);
-        longitude = (EditText)findViewById(R.id.add_report_longitude);
+        uniqueID = findViewById(R.id.add_report_uniqueID);
+        createdDate = findViewById(R.id.add_report_date_created);
+        locationType = findViewById(R.id.add_report_location_type);
+        incidentZip = findViewById(R.id.add_report_incident_zip);
+        incidentAddress = findViewById(R.id.add_report_incident_address);
+        city = findViewById(R.id.add_report_city);
+        borough = findViewById(R.id.add_report_borough);
+        latitude = findViewById(R.id.add_report_latitude);
+        longitude = findViewById(R.id.add_report_longitude);
 
         uniqueID.setHint("Unique ID");
         createdDate.setHint("Date Created");
@@ -50,7 +50,7 @@ public class AddRatReportActivity extends AppCompatActivity {
         longitude.setHint("Longitude");
 
         //for cancel button, return to previous screen
-        Button cancelButton = (Button) findViewById(R.id.add_report_cancel_button);
+        Button cancelButton = findViewById(R.id.add_report_cancel_button);
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +60,7 @@ public class AddRatReportActivity extends AppCompatActivity {
 
 
         //action for accept button
-        Button acceptButton = (Button) findViewById(R.id.add_report_accept_button);
+        Button acceptButton = findViewById(R.id.add_report_accept_button);
         acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -12,7 +12,7 @@
         android:id="@+id/detailed_textView"
         android:layout_width="379dp"
         android:layout_height="203dp"
-        android:text="TextView" />
+        android:text="@string/TextView" />
 
     <Button
         android:id="@+id/backButton"
@@ -22,7 +22,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="Back"
+        android:text="@string/Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

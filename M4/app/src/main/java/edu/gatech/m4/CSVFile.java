@@ -16,7 +16,7 @@ class CSVFile {
     }
 
     public HashMap<String, String[]> read(){
-        ArrayList<String[]> resultList = new ArrayList<>();
+        @SuppressWarnings("MismatchedQueryAndUpdateOfCollection") ArrayList<String[]> resultList = new ArrayList<>();
         HashMap<String, String[]> data = new HashMap<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {
@@ -26,7 +26,7 @@ class CSVFile {
                 //edit the date column
                 String date = row[1];
                 if (date.equals("Created Date")) {
-
+                    continue;
                 } else {
                     String[] split = date.split("\\s+");
                     date = split[0];

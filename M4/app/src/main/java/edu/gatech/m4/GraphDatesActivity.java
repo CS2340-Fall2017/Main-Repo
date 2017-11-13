@@ -13,18 +13,16 @@ public class GraphDatesActivity extends AppCompatActivity {
 
     private DatePicker startDateVal;
     private DatePicker endDateVal;
-    private String startDate;
-    private String endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph_dates);
 
-        startDateVal = (DatePicker)findViewById(R.id.startDate_Picker_Graph);
-        endDateVal = (DatePicker)findViewById(R.id.endDate_Picker_Graph);
+        startDateVal = findViewById(R.id.startDate_Picker_Graph);
+        endDateVal = findViewById(R.id.endDate_Picker_Graph);
 
-        Button loadMap = (Button) findViewById(R.id.loadGraph);
+        Button loadMap = findViewById(R.id.loadGraph);
         //switch to activity with map
         loadMap.setOnClickListener(new View.OnClickListener() {
             @Override

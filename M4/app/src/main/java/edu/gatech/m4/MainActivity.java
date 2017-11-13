@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button reportsButton = (Button) findViewById(R.id.reportsButton);
+        Button reportsButton = findViewById(R.id.reportsButton);
         reportsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button graphButton = (Button) findViewById(R.id.graphButton);
+        Button graphButton = findViewById(R.id.graphButton);
         //switch to activity with graph
         graphButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, GraphDatesActivity.class));
             }
         });
-        Button mapButton = (Button) findViewById(R.id.mapButton);
+        Button mapButton = findViewById(R.id.mapButton);
         //switch to activity with map
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button logoutButton = (Button) findViewById(R.id.logoutButton);
+        Button logoutButton = findViewById(R.id.logoutButton);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

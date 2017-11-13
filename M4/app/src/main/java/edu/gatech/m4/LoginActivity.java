@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = findViewById(R.id.email);
 
 
         //Firebase Users
@@ -43,25 +43,24 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
-        mPasswordView = (EditText) findViewById(R.id.password);
-        EditText errorView = (EditText) findViewById(R.id.errorText);
+        mPasswordView = findViewById(R.id.password);
+        EditText errorView = findViewById(R.id.errorText);
 
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+        Button mEmailSignInButton = findViewById(R.id.email_sign_in_button);
 
 
         View mLoginFormView = findViewById(R.id.login_form);
         View mProgressView = findViewById(R.id.login_progress);
 
-        Button login = (Button) findViewById(R.id.email_sign_in_button);
-        login.setOnClickListener(new View.OnClickListener() {
+        mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validate(mEmailView.getText().toString(), mPasswordView.getText().toString());
             }
         });
 
-        Button cancel = (Button) findViewById(R.id.cancel_sign_in_button);
+        Button cancel = findViewById(R.id.cancel_sign_in_button);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

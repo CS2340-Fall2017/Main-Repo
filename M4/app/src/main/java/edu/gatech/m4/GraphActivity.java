@@ -19,7 +19,6 @@ import java.util.Set;
 import java.util.TreeMap;
 
 public class GraphActivity extends AppCompatActivity {
-    private int numInstancesToShow;
     private final Map<String, Integer> graphHelper = new TreeMap<>();
     private final List<BarEntry> entries = new ArrayList<>();
 
@@ -39,7 +38,7 @@ public class GraphActivity extends AppCompatActivity {
         Cursor cursor = dbHelper.getDateRange(dates[0], dates[1]);
         cursor.moveToFirst();
 
-        BarChart barChart = (BarChart) findViewById(R.id.chart);
+        BarChart barChart = findViewById(R.id.chart);
 
         //loop through each of the dates, adding all of the ones with a similar month
         //to the same bucket in the histogram
@@ -83,7 +82,7 @@ public class GraphActivity extends AppCompatActivity {
         barChart.setFitBars(true); // make the x-axis fit exactly all bars
         barChart.invalidate(); // refresh
 
-        Button backButton = (Button) findViewById(R.id.graphBackButton);
+        Button backButton = findViewById(R.id.graphBackButton);
         //switch to activity with map
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -11,6 +11,6 @@ public class charlieKellyRatTester {
     @Test
     public void mapTester() throws Exception {
         int x = 2 + 2;
-        assert (x == 2);
+        assert false;
     }
 }

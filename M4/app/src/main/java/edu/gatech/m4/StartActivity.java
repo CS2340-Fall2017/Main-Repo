@@ -28,16 +28,15 @@ public class StartActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private ListView listView;
     private HashMap<String, String[]> scoreList;
-    private String[] data;
     private ArrayAdapter<String> adapter;
     private DBHelper dbHelper;
-    private SimpleCursorAdapter cursorAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        listView = (ListView) findViewById(R.id.listView);
-        EditText inputSearch = (EditText) findViewById(R.id.inputSearch);
+        listView = findViewById(R.id.listView);
+        EditText inputSearch = findViewById(R.id.inputSearch);
 
         dbHelper = new DBHelper(this);
 
@@ -75,7 +74,7 @@ public class StartActivity extends AppCompatActivity {
                 System.out.println("something useless");
             }
             ArrayList<String> uniqueKeys = new ArrayList<>(scoreList.keySet());
-            data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
+            String[] data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
 
 
 //            //adds initial csv data
@@ -102,7 +101,7 @@ public class StartActivity extends AppCompatActivity {
         }
 
         //log out
-        Button logOut = (Button) findViewById(R.id.logout_button);
+        Button logOut = findViewById(R.id.logout_button);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,7 +109,7 @@ public class StartActivity extends AppCompatActivity {
             }
         });
         //add report
-        Button addReport = (Button) findViewById(R.id.add_report_button);
+        Button addReport = findViewById(R.id.add_report_button);
         addReport.setOnClickListener(new View.OnClickListener() {
                                          @Override
                                          public void onClick(View v) {
@@ -128,7 +127,7 @@ public class StartActivity extends AppCompatActivity {
                 R.id.reportID,
                 R.id.reportName
         };
-        cursorAdapter = new SimpleCursorAdapter(this, R.layout.report_info1,
+        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.report_info1,
                 cursor, columns, widgets, 0);
 
         ArrayList<String> names = new ArrayList<>();
@@ -178,9 +177,7 @@ public class StartActivity extends AppCompatActivity {
         });
 
     }
-    public HashMap<String, String[]> getData() {
-        return scoreList;
-    }
+
     @Override
     public void onStart() {
         super.onStart();

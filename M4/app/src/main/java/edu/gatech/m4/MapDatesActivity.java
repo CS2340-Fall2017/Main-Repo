@@ -15,8 +15,6 @@ public class MapDatesActivity extends AppCompatActivity {
 
     private DatePicker startDateVal;
     private DatePicker endDateVal;
-    private String startDate;
-    private String endDate;
     private EditText numInstances;
 
     @Override
@@ -24,12 +22,12 @@ public class MapDatesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map_dates);
 
-        startDateVal = (DatePicker)findViewById(R.id.startDate_Picker);
-        endDateVal = (DatePicker)findViewById(R.id.endDate_Picker_Graph);
-        numInstances = (EditText)findViewById(R.id.numInstancesDateRange);
+        startDateVal = findViewById(R.id.startDate_Picker);
+        endDateVal = findViewById(R.id.endDate_Picker_Graph);
+        numInstances = findViewById(R.id.numInstancesDateRange);
 
 
-        Button loadGraph = (Button) findViewById(R.id.loadGraph);
+        Button loadGraph = findViewById(R.id.loadGraph);
         //switch to activity with map
         loadGraph.setOnClickListener(new View.OnClickListener() {
             @Override
