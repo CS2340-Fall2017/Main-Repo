@@ -59,7 +59,6 @@
 
     <ImageView
         android:contentDescription="@string/image"
-        android:id="@+id/imageView2"
         android:layout_width="93dp"
         android:layout_height="136dp"
         app:srcCompat="@drawable/charlie"

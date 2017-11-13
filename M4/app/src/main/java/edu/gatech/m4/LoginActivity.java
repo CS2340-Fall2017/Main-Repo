@@ -56,7 +56,17 @@ public class LoginActivity extends AppCompatActivity {
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validate(mEmailView.getText().toString(), mPasswordView.getText().toString());
+                String email = mEmailView.getText().toString();
+                String pass = mPasswordView.getText().toString();
+                if (isValidEmail(email)== null) {
+                    if (isValidPassword(pass)==null) {
+                        signIn(email, pass);
+                    } else {
+                        showErrors(isValidPassword(pass));
+                    }
+                }  else {
+                    showErrors(isValidEmail(email));
+                }
             }
         });
 
@@ -77,16 +87,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param userName an input user name from the Login activity
      * @param password an input password from the Login Activity
      */
-    private void validate(String userName, String password) {
-        if (TextUtils.isEmpty(userName)) {
-            Toast.makeText(getApplicationContext(), "Enter an email address!", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(getApplicationContext(), "Enter a password!", Toast.LENGTH_SHORT).show();
-            return;
-        }
+    private void signIn(String userName, String password) {
         //authenticate user
         mAuth.signInWithEmailAndPassword(userName, password)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -106,6 +107,35 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private String isValidEmail(String userName) {
+        String emailError;
+        if (TextUtils.isEmpty(userName)) {
+            emailError = "'Email' cannot be empty";
+            return emailError;
+        } else if (!userName.contains("@")) {
+            emailError = "Invalid email";
+            return emailError;
+        } else {
+            emailError = null;
+            return null;
+        }
+    }
+    private String isValidPassword(String password) {
+        String passwordError;
+        if (TextUtils.isEmpty(password)) {
+            passwordError = "'Password' cannot be empty.";
+            return passwordError;
+        } else {
+            passwordError = null;
+            return null;
+        }
+    }
+
+    private void showErrors(String message) {
+        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+
     }
 }
 

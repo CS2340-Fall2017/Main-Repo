@@ -21,15 +21,16 @@ import com.google.firebase.auth.FirebaseUser;
 import android.support.annotation.NonNull;
 
 import android.widget.ArrayAdapter;
-import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class StartActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authListener;
     private ListView listView;
-    private HashMap<String, String[]> scoreList;
     private ArrayAdapter<String> adapter;
     private DBHelper dbHelper;
+    @SuppressWarnings("unused")
+    private String[] data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class StartActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         //get current user
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -65,7 +66,7 @@ public class StartActivity extends AppCompatActivity {
             CSVFile csvFile = new CSVFile(inputStream);
             //Model.getInstance().readCSV(csvFile);
 //            scoreList = Model.getInstance().getRatData();
-            scoreList = csvFile.read();
+            HashMap<String, String[]> scoreList = csvFile.read();
             try {
                 String[] newly_added_data = (String[]) getIntent().getSerializableExtra("String Array");
                 scoreList.put(newly_added_data[0], newly_added_data);
@@ -74,29 +75,12 @@ public class StartActivity extends AppCompatActivity {
                 System.out.println("something useless");
             }
             ArrayList<String> uniqueKeys = new ArrayList<>(scoreList.keySet());
-            String[] data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
+            data = uniqueKeys.toArray(new String[uniqueKeys.size()]);
 
 
 //            //adds initial csv data
 //
-//            for(int i = 0; i < data.length; i++ ) {
-//                String[] arr = scoreList.get(data[i]);
-//                if (arr.length >=49) { //some rows have fewer columns not displaying long and lat
-//                    if(dbHelper.insertReport(arr[0],arr[1], arr[7], arr[50], arr[49], arr[8], arr[9], arr[16], arr[23])) {
-//                        Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else{
-//                        Toast.makeText(getApplicationContext(), "Could not Insert report", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    if(dbHelper.insertReport(arr[0],arr[1], arr[7], arr[8], arr[9], arr[16], arr[23], arr[30], arr[31])) {  //49 and 50
-//                        Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
-//                    }
-//                    else{
-//                        Toast.makeText(getApplicationContext(), "Could not Insert report", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
+//            addData();
 
         }
 
@@ -119,16 +103,16 @@ public class StartActivity extends AppCompatActivity {
                                      });
 
         Cursor cursor = dbHelper.getAllReports();
-        String [] columns = new String[] {
-                DBHelper.REPORT_COLUMN_ID,
-                DBHelper.REPORT_COLUMN_NAME
-        };
-        int [] widgets = new int[] {
-                R.id.reportID,
-                R.id.reportName
-        };
-        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.report_info1,
-                cursor, columns, widgets, 0);
+//        String [] columns = new String[] {
+//                DBHelper.REPORT_COLUMN_ID,
+//                DBHelper.REPORT_COLUMN_NAME
+//        };
+//        int [] widgets = new int[] {
+//                R.id.reportID,
+//                R.id.reportName
+//        };
+//        SimpleCursorAdapter cursorAdapter = new SimpleCursorAdapter(this, R.layout.report_info1,
+//                cursor, columns, widgets, 0);
 
         ArrayList<String> names = new ArrayList<>();
         //cursor.moveToNext();
@@ -218,5 +202,28 @@ public class StartActivity extends AppCompatActivity {
             mAuth.removeAuthStateListener(authListener);
         }
     }
+
+// --Commented out by Inspection START (11/13/2017 3:48 PM):
+//    public void addData() {
+//        for(int i = 0; i < data.length; i++ ) {
+//                String[] arr = scoreList.get(data[i]);
+//                if (arr.length >=49) {
+//                    if(dbHelper.insertReport(arr[0],arr[1], arr[7], arr[50], arr[49], arr[8], arr[9], arr[16], arr[23])) {
+//                        Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else{
+//                        Toast.makeText(getApplicationContext(), "Could not Insert report", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    if(dbHelper.insertReport(arr[0],arr[1], arr[7], arr[8], arr[9], arr[16], arr[23], arr[30], arr[31])) {  //49 and 50
+//                        Toast.makeText(getApplicationContext(), "Report Inserted", Toast.LENGTH_SHORT).show();
+//                    }
+//                    else{
+//                        Toast.makeText(getApplicationContext(), "Could not Insert report", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//        }
+//    }
+// --Commented out by Inspection STOP (11/13/2017 3:48 PM)
 
 }

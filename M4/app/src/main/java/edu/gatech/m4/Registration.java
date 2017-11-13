@@ -22,8 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Registration extends AppCompatActivity {
     private EditText email;
     private EditText password;
-    //Hash Map to store user registrations
-    private static HashMap<String,String> user_data;
 
 
     private FirebaseAuth mAuth;
@@ -43,7 +41,7 @@ public class Registration extends AppCompatActivity {
         RadioButton user = findViewById(R.id.radio_user);
         EditText error = findViewById(R.id.error_message);
         //Create hashmap of user data
-        user_data = new HashMap<>();
+        HashMap<String, String> user_data = new HashMap<>();
 
         //Firebase
         mAuth = FirebaseAuth.getInstance();
