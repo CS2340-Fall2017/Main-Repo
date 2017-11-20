@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class CSVFileTest extends ActivityTestCase{
     /**
      * This Test will check the CSV --> HashMap function. It will test the 4 main components
-     * that are constantly used throughout the application, these being: ID, City, Latitude
+     * that are constantly used throughout the application, these being: ID, Date, City, Latitude
      * and Longitude
      */
     @Test
@@ -35,6 +35,11 @@ public class CSVFileTest extends ActivityTestCase{
         int i = 0;
         for (String key : data.keySet()) {
             String [] tempValues = data.get(key);
+            String date = tempValues[0];
+            String[] dateVals = date.split("-");
+            for (String temp : dateVals) {
+                assertEquals(2, temp.length());
+            }
             assertEquals(ids[i], key);
             assertEquals(cities[i], tempValues[15]);
             assertEquals(latitudes[i], tempValues[48]);
