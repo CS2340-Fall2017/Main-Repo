@@ -2,7 +2,6 @@ package edu.gatech.m4;
 
 import android.content.Context;
 import android.test.ActivityTestCase;
-import android.test.InstrumentationTestCase;
 
 import org.junit.Test;
 import java.io.InputStream;
@@ -15,6 +14,11 @@ import static org.junit.Assert.*;
  * Created by eduardovargas on 11/19/17.
  */
 public class CSVFileTest extends ActivityTestCase{
+    /**
+     * This Test will check the CSV --> HashMap function. It will test the 4 main components
+     * that are constantly used throughout the application, these being: ID, City, Latitude
+     * and Longitude
+     */
     @Test
     public void testRead() throws Exception {
         Context testContext = getInstrumentation().getTargetContext();
@@ -26,10 +30,10 @@ public class CSVFileTest extends ActivityTestCase{
         String[] cities = {"NEW YORK", "STATEN ISLAND", "STATEN ISLAND", "BROOKLYN"};
         String[] latitudes = {"40.70777155", "40.57520924", "40.63123555", "40.70898692"};
         String[] longitudes = {"-74.0129631", "-74.10454652", "-74.1268776", "-73.9412069" };
+
+
         int i = 0;
-        System.out.println("hola");
         for (String key : data.keySet()) {
-            System.out.println("Here");
             String [] tempValues = data.get(key);
             assertEquals(ids[i], key);
             assertEquals(cities[i], tempValues[15]);
