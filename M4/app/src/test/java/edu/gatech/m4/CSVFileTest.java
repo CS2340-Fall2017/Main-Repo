@@ -37,9 +37,11 @@ public class CSVFileTest extends ActivityTestCase{
             String [] tempValues = data.get(key);
             String date = tempValues[0];
             String[] dateVals = date.split("-");
-            for (String temp : dateVals) {
-                assertEquals(2, temp.length());
-            }
+
+            assertEquals(2, dateVals[0].length()); // MM
+            assertEquals(2, dateVals[1].length()); // DD
+            assertEquals(4, dateVals[2].length()); // YYYY
+
             assertEquals(ids[i], key);
             assertEquals(cities[i], tempValues[15]);
             assertEquals(latitudes[i], tempValues[48]);
