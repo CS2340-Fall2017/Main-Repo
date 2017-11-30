@@ -39,7 +39,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         boroughList = new ArrayList<>();
 
         String[] dates = (String[]) getIntent().getSerializableExtra("String");
-        numInstancesToShow = Integer.parseInt(dates[2]);
+        numInstancesToShow = (dates[2].equals("")) ? 0 : Integer.parseInt(dates[2]);
         Log.d("message", dates[0]);
         Cursor cursor = dbHelper.getDateRange(dates[0], dates[1]);
         cursor.moveToFirst();
