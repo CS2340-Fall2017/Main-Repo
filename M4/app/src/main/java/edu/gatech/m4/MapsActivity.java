@@ -4,7 +4,10 @@ import android.database.Cursor;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
 
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -39,11 +42,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         boroughList = new ArrayList<>();
 
         String[] dates = (String[]) getIntent().getSerializableExtra("String");
-        numInstancesToShow = (dates[2].equals("")) ? 0 : Integer.parseInt(dates[2]);
+
         Log.d("message", dates[0]);
         Cursor cursor = dbHelper.getDateRange(dates[0], dates[1]);
         cursor.moveToFirst();
-        for (int i=0; i<numInstancesToShow; i++) {
+
+        if (cursor.getCount() == 0) {
+            numInstancesToShow = 0;
+        } else if (dates[2] != null && !dates[2].equals("")) {
+            numInstancesToShow = Integer.parseInt(dates[2]);
+        } else {
+            numInstancesToShow = cursor.getCount();
+        }
+
+        for (int i = 0; i < numInstancesToShow; i++) {
             if (cursor.moveToNext()) {
                 String id = cursor.getString(cursor.getColumnIndex(DBHelper.REPORT_COLUMN_NAME));
                 idList.add(id);
@@ -55,6 +67,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 boroughList.add(borough);
             }
         }
+        // update instances to show as the count includes extras / nulls
+        numInstancesToShow = idList.size();
 
     }
 
@@ -71,12 +85,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         UiSettings mUiSettings = googleMap.getUiSettings();
+
         mUiSettings.setZoomControlsEnabled(true);
         // Add a marker in Sydney and move the camera
-        for (int a=0; a<numInstancesToShow; a++) {
+        for (int a = 0; a < numInstancesToShow; a++) {
             LatLng marker = new LatLng(latitudeList.get(a), longitudeList.get(a));
             googleMap.addMarker(new MarkerOptions().position(marker).title(idList.get(a)).snippet(boroughList.get(a)));
         }
-        
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.71,-74.06) , 8.0f) );
+
+
     }
 }

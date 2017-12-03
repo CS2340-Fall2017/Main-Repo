@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button reportsButton = findViewById(R.id.reportsButton);
+        reportsButton.setMinimumWidth(200);
+
         reportsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button graphButton = findViewById(R.id.graphButton);
+        graphButton.setMinimumWidth(200);
         //switch to activity with graph
         graphButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button mapButton = findViewById(R.id.mapButton);
+        mapButton.setMinimumWidth(200);
         //switch to activity with map
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override

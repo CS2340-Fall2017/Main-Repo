@@ -22,9 +22,9 @@ public class GraphDatesActivity extends AppCompatActivity {
         startDateVal = findViewById(R.id.startDate_Picker_Graph);
         endDateVal = findViewById(R.id.endDate_Picker_Graph);
 
-        Button loadMap = findViewById(R.id.loadGraph);
+        Button loadGraph= findViewById(R.id.loadGraph);
         //switch to activity with map
-        loadMap.setOnClickListener(new View.OnClickListener() {
+        loadGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String sDay = Integer.toString(startDateVal.getDayOfMonth());

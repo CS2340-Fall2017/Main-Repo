@@ -18,25 +18,21 @@
 
     <Button
         android:id="@+id/mapButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="@string/Map"
-        app:layout_constraintTop_toBottomOf="@+id/reportsButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="64dp" />
+        app:layout_constraintTop_toBottomOf="@+id/reportsButton" />
 
     <Button
         android:id="@+id/graphButton"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="@string/Graph"
-        app:layout_constraintTop_toBottomOf="@+id/mapButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="112dp" />
+        app:layout_constraintTop_toBottomOf="@+id/mapButton" />
 
     <TextView
         android:id="@+id/titleText"

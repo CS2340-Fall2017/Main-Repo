@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
+import android.widget.Toast;
 
 
 public class MapDatesActivity extends AppCompatActivity {
@@ -27,9 +27,9 @@ public class MapDatesActivity extends AppCompatActivity {
         numInstances = findViewById(R.id.numInstancesDateRange);
 
 
-        Button loadGraph = findViewById(R.id.loadGraph);
+        Button loadMap = findViewById(R.id.loadMap);
         //switch to activity with map
-        loadGraph.setOnClickListener(new View.OnClickListener() {
+        loadMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String sDay = Integer.toString(startDateVal.getDayOfMonth());
@@ -47,9 +47,6 @@ public class MapDatesActivity extends AppCompatActivity {
                 String endDate = eYear + "-" + eMonth + "-" + eDay;
 
                 // get how many instances to display on the map
-
-
-
 
                 String[] dateStrings = { startDate, endDate, numInstances.getText().toString() };
                 Intent intent = new Intent(MapDatesActivity.this, MapsActivity.class);
