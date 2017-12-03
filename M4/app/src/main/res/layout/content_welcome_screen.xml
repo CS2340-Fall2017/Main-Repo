@@ -56,12 +56,12 @@
         tools:targetApi="jelly_bean" />
 
     <ImageView
+        android:id="@+id/charliePic"
         android:layout_width="93dp"
         android:layout_height="136dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
         android:contentDescription="@string/image"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.501"

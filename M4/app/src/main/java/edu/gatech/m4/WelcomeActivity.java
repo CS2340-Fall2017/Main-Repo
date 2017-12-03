@@ -1,10 +1,14 @@
 package edu.gatech.m4;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -22,6 +26,10 @@ public class WelcomeActivity extends AppCompatActivity {
 
     LoginButton facebookloginButton;
     CallbackManager callbackManager;
+    MediaPlayer mediaPlayer;
+    ImageView img;
+    Animation rotate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +90,17 @@ public class WelcomeActivity extends AppCompatActivity {
 
             }
         });
+
+
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.sunny);
+        mediaPlayer.start();
+
+        img = (ImageView) findViewById(R.id.charliePic);
+
+        // load the animation
+        rotate = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.rotate);
+        img.startAnimation(rotate);
 
     }
 
