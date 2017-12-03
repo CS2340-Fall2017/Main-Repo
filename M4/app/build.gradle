@@ -36,13 +36,9 @@ dependencies {
     compile 'com.google.android.gms:play-services-maps:11.6.0'
     testCompile 'junit:junit:4.12'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
-    compile 'com.facebook.android:facebook-share:[4,5)'
+    compile 'com.facebook.android:facebook-login:[4,5)'
 
 }
-
-
-
-
 
 
 

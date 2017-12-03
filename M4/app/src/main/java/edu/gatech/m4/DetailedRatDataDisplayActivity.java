@@ -1,14 +1,18 @@
 package edu.gatech.m4;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 
 public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
-    
+    Button shareButton;
+    String specificData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
         //get id of textView
         TextView uniqueIDDisplay = findViewById(R.id.detailed_textView);
         //display textData
-        String specificData = "";
+        specificData = "";
             specificData += "Unique Key: " + key + "\n";
             specificData += "Created Date: " + date + "\n";
             specificData += "Location Type: " +  location + "\n";
@@ -51,6 +55,22 @@ public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
 
         uniqueIDDisplay.setText(specificData);
 
+        shareButton = findViewById(R.id.shareButton);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                String body = "RAT REPORT!";
+                String subject = specificData;
+                intent.putExtra(Intent.EXTRA_SUBJECT, body);
+                intent.putExtra(Intent.EXTRA_TEXT, subject);
+                startActivity(Intent.createChooser(intent, "Share using"));
+
+
+            }
+
+        });
 
         // back button
         Button backButton = findViewById(R.id.backButton);
