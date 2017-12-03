@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Button;
 
 public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +49,6 @@ public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
             specificData += "Longitude: " + longitude;
 
 
-
-
         uniqueIDDisplay.setText(specificData);
 
 
@@ -63,5 +61,7 @@ public class    DetailedRatDataDisplayActivity extends AppCompatActivity {
 //                startActivity(intent);
                 finish();
             }
-        });    }
+        });
+
+    }
 }
