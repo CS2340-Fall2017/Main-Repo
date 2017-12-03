@@ -22,9 +22,11 @@ public class MainActivity extends AppCompatActivity {
         reportsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, StartActivity.class));
+                Intent intent = new Intent(MainActivity.this, StartActivity.class);
+                intent.putExtra("AUTH", "FbLogin");
+                startActivity(intent);
             }
-        });
+        }); //ADD EXTRA TO COMMUNICATE WITH START ACTIVITY
 
         Button graphButton = findViewById(R.id.graphButton);
         graphButton.setMinimumWidth(200);

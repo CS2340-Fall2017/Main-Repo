@@ -38,7 +38,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
         listView = findViewById(R.id.listView);
         EditText inputSearch = findViewById(R.id.inputSearch);
-
+        final Bundle authExtra = getIntent().getExtras();
         dbHelper = new DBHelper(this);
 
 
@@ -50,8 +50,9 @@ public class StartActivity extends AppCompatActivity {
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                //GET EXTRA FROM FB LOGIN
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user == null) {
+                if (user == null && authExtra == null) {
                     // user auth state is changed - user is null
                     // launch login activity
                     startActivity(new Intent(StartActivity.this, WelcomeActivity.class));
