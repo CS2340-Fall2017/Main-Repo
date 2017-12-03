@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     // UI references.
     private AutoCompleteTextView mEmailView;
     private EditText mPasswordView;
+    private int passwordAttemptCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param userName an input user name from the Login activity
      * @param password an input password from the Login Activity
      */
-    private void signIn(String userName, String password) {
+    private void signIn(String userName, final String password) {
         //authenticate user
         mAuth.signInWithEmailAndPassword(userName, password)
                 .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -96,10 +97,17 @@ public class LoginActivity extends AppCompatActivity {
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
+
                         if (!task.isSuccessful()) {
                             // there was an error
 
-                            Toast.makeText(LoginActivity.this, "Authentication Failed", Toast.LENGTH_LONG).show();
+                            if (passwordAttemptCount > 3) {
+                                showErrors("Too many password attempts.");
+                                mPasswordView.setFocusable(false);
+                            } else {
+                                Toast.makeText(LoginActivity.this, "Authentication Failed. " + (3 - passwordAttemptCount) + "Attempts Left.", Toast.LENGTH_LONG).show();
+                                passwordAttemptCount++;
+                            }
                         } else {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
