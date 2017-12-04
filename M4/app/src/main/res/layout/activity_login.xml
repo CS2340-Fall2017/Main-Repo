@@ -85,6 +85,12 @@
                 android:text="@string/Cancel"
                 android:textStyle="bold"
                 tools:targetApi="lollipop" />
+            <Button
+                android:id="@+id/forgotButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password?"
+                android:visibility="visible" />
 
             <EditText
                 android:id="@+id/errorText"
@@ -94,5 +100,7 @@
                 android:inputType="textPersonName" />
 
         </LinearLayout>
+
+
     </ScrollView>
 </LinearLayout>

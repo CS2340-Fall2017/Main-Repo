@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -77,6 +78,28 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, WelcomeActivity.class );
                 startActivity(intent); //go back to welcome page
+            }
+        });
+        Button forgot = findViewById(R.id.forgotButton);
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email = mEmailView.getText().toString();
+                if (isValidEmail(email) == null) {
+                    mAuth.sendPasswordResetEmail(email)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d("Success", "Email sent.");
+                                    } else {
+                                        showErrors("Could no reset password.");
+                                    }
+                                }
+                            });
+                } else {
+                    showErrors(isValidEmail(email));
+                }
             }
         });
     }
