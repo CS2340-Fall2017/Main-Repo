@@ -92,7 +92,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             LatLng marker = new LatLng(latitudeList.get(a), longitudeList.get(a));
             googleMap.addMarker(new MarkerOptions().position(marker).title(idList.get(a)).snippet(boroughList.get(a)));
         }
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.71,-74.06) , 8.0f) );
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.71,-74) , 10.0f) );
 
 
     }
