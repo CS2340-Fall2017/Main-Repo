@@ -48,6 +48,33 @@ public class GraphDatesActivity extends AppCompatActivity {
 
             }
         });
+
+        Button loadTotalGraph = findViewById(R.id.loadTotalGraph);
+        //switch to activity with map
+        loadTotalGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sDay = Integer.toString(startDateVal.getDayOfMonth());
+                sDay = (sDay.length() < 2) ? "0" + sDay : sDay;
+                String sMonth = Integer.toString(startDateVal.getMonth() + 1); //gets month starting from zero
+                sMonth = (sMonth.length() < 2) ? "0" + sMonth : sMonth;
+                String sYear  = Integer.toString(startDateVal.getYear());
+                String startDate = sYear + "-" + sMonth + "-" + sDay;
+                Log.i("START DATE:", startDate);
+                String eDay = Integer.toString(endDateVal.getDayOfMonth());
+                eDay = (eDay.length() < 2) ? "0" + eDay : eDay;
+                String eMonth = Integer.toString(endDateVal.getMonth() + 1); //gets month starting from zero
+                eMonth = (eMonth.length() < 2) ? "0" + eMonth : eMonth;
+                String eYear  = Integer.toString(endDateVal.getYear());
+                String endDate = eYear + "-" + eMonth + "-" + eDay;
+
+                String[] dateStrings = { startDate, endDate };
+                Intent intent = new Intent(GraphDatesActivity.this, GraphTotalActivity.class);
+                intent.putExtra("String", dateStrings);
+                startActivity(intent);
+
+            }
+        });
     }
 
 

@@ -18,12 +18,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class GraphActivity extends AppCompatActivity {
+public class GraphTotalActivity extends AppCompatActivity {
     private final Map<String, Integer> graphHelper = new TreeMap<>();
     private final List<BarEntry> entries = new ArrayList<>();
-
-
-
 
 
     @Override
@@ -58,9 +55,11 @@ public class GraphActivity extends AppCompatActivity {
 
         Set<String> keys = graphHelper.keySet();
         float count = 0;
+        float total = 0;
         for (String key : keys) {
             float floatKey = (float) graphHelper.get(key);
-            entries.add(new BarEntry(count, (float)graphHelper.get(key)));
+            total += floatKey;
+            entries.add(new BarEntry(count, total));
             count++;
         }
 
@@ -69,6 +68,7 @@ public class GraphActivity extends AppCompatActivity {
         BarDataSet set = new BarDataSet(entries, "RatSightings");
         BarData data = new BarData(set);
         data.setBarWidth(0.9f); // set custom bar width
+        data.setValueTextColor('W');
         barChart.setData(data);
         barChart.setBackgroundColor(2);
         barChart.setFitBars(true); // make the x-axis fit exactly all bars
@@ -79,10 +79,8 @@ public class GraphActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(GraphActivity.this, GraphDatesActivity.class));
+                startActivity(new Intent(GraphTotalActivity.this, GraphDatesActivity.class));
             }
         });
     }
-
-
 }
